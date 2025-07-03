@@ -1,0 +1,66 @@
+{
+    "name": "mxrvx/orm",
+    "type": "library",
+    "license": "MIT",
+    "description": "Cycle ORM for MODX Revolution",
+    "keywords": [
+        "MODX",
+        "Revolution",
+        "Cycle ORM"
+    ],
+    "authors": [
+        {
+            "name": "Vgrish",
+            "email": "vgrish@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mxrvx/orm/issues",
+        "source": "https://github.com/mxrvx/orm",
+        "docs": "https://github.com/mxrvx/orm",
+        "chat": "https://t.me/mxrvx_official"
+    },
+    "require": {
+        "php": ">=8.0",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "cycle/orm": "^v2.10",
+        "cycle/active-record": "^v1.0",
+        "cycle/annotated": "^v4.3",
+        "cycle/entity-behavior": "^v1.4",
+        "cycle/schema-provider": "^1.0",
+        "cycle/migrations": "^v4.2",
+        "cycle/schema-migrations-generator": "^v2.3",
+        "loophp/collection": "^7.0",
+        "monolog/monolog": "^3.9",
+        "mxrvx/autoloader": "^v0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^6.0.0",
+        "mxrvx/code-style": "^1.0.0",
+        "modx/revolution": "v3.0.0-pl"
+    },
+    "autoload": {
+        "psr-4": {
+            "MXRVX\\ORM\\": "core/src/"
+        },
+        "classmap": ["core/src/"]
+    },
+    "bin": [
+        "bin/mxrvx-orm"
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": false
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "scripts": {
+        "cs:diff": "php-cs-fixer fix --dry-run -v --diff",
+        "cs:fix": "php-cs-fixer fix -v",
+        "psalm": "psalm --no-cache",
+        "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
+        "test": "phpunit --color=always"
+    }
+}

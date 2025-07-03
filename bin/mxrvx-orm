@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+/** @var \modX $modx */
+/** @var \DI\Container $container */
+/** @psalm-suppress MissingFile */
+require dirname(__DIR__) . '/core/autoloader.php';
+
+(new MXRVX\ORM\Console\Console($container))->run();
