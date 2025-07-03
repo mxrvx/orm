@@ -20,7 +20,7 @@ final class RegisterConfigs
 
     public static function getModxEntitiesDirectory(): string
     {
-        return Packages::getEntitiesDirectory(self::getModxEntitiesNameSpace());
+        return Packages::getVendorEntitiesDirectory(self::getModxEntitiesNameSpace());
     }
 
     public function __invoke(Container $c): void
