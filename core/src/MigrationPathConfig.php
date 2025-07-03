@@ -32,7 +32,7 @@ class MigrationPathConfig extends EntityPathConfig
 
     public function getNameSpaceDirectory(): string
     {
-        return Packages::getNameSpaceDirectory($this->namespace);
+        return Packages::getComponentsDirectory($this->namespace);
     }
 
     public function getDirectory(): string
