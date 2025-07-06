@@ -10,6 +10,22 @@ use MXRVX\ORM\Driver\MySQL\MySQLDriver;
 
 class ConnectionConfig
 {
+    /** @var array<int, int|string|bool> */
+    protected array $connectionDefaultOptions = [
+        \PDO::ATTR_CASE               => \PDO::CASE_NATURAL,
+        \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+        // TODO Should be moved into common driver settings.
+        \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "UTF8"',
+        \PDO::ATTR_STRINGIFY_FETCHES  => false,
+    ];
+
+    /** @var array<string, bool> */
+    protected array $driverDefaultOptions = [
+        'withDatetimeMicroseconds' => true,
+        'logInterpolatedQueries' => true,
+        'logQueryParameters' => false,
+    ];
+
     /** @var positive-int */
     private int $port;
 
@@ -26,24 +42,33 @@ class ConnectionConfig
         /** @var non-empty-string */
         private string $charset = 'utf8mb4',
         private string $prefix = '',
-        /** @var array<int, non-empty-string> */
-        private array  $options = [],
+        /** @var array<int, int|string|bool> */
+        private array  $connectionOptions = [],
+        /** @var array<string, bool> */
+        private array  $driverOptions = [],
     ) {
         $this->port = \max(1, (int) $port);
+        $this->connectionOptions = $connectionOptions + $this->connectionDefaultOptions;
+        $this->driverOptions = $driverOptions + $this->driverDefaultOptions;
     }
 
     public function toDriverConfig(): MySQLDriverConfig
     {
-        $tcpConfig = new TcpConnectionConfig(
-            host: $this->host,
-            port: $this->port,
-            user: $this->user,
-            password: $this->password,
-            database: $this->database,
-            charset: $this->charset,
-            options: $this->options,
+        /** @psalm-suppress InvalidArgument */
+        return new MySQLDriverConfig(
+            driver: MySQLDriver::class,
+            connection: new TcpConnectionConfig(
+                host: $this->host,
+                port: $this->port,
+                user: $this->user,
+                password: $this->password,
+                database: $this->database,
+                charset: $this->charset,
+                options: $this->connectionOptions,
+            ),
+            queryCache: true,
+            options: $this->driverOptions,
         );
-        return new MySQLDriverConfig(driver: MySQLDriver::class, connection: $tcpConfig, queryCache: true);
     }
 
     public function toDatabaseConfig(string $name): array

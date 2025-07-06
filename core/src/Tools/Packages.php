@@ -33,12 +33,11 @@ class Packages
 
     public static function getVendorDirectory(string $namespace): string
     {
-        return \sprintf('%s/vendor/%s/', \rtrim(MODX_CORE_PATH, '/'), (string)preg_replace('/-/', '/', $namespace, 1));
+        return \sprintf('%s/vendor/%s/', \rtrim(MODX_CORE_PATH, '/'), (string) \preg_replace('/-/', '/', $namespace, 1));
     }
 
     public static function getVendorEntitiesDirectory(string $namespace): string
     {
         return \sprintf('%s/core/src/Entities/', \rtrim(self::getVendorDirectory($namespace), '/'));
     }
-
 }
