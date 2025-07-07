@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MXRVX\ORM\Events;
 
-class OnSiteRefreshEvent extends AbstractEvent
+class OnCacheUpdateEvent extends AbstractEvent
 {
     public function __invoke(): void
     {

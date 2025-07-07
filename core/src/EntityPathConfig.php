@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MXRVX\ORM;
 
 use MXRVX\ORM\Contracts\PathConfigInterface;
+use MXRVX\ORM\Tools\Files;
 
 /**
  * @psalm-import-type configMetaData from PathConfigInterface
@@ -25,9 +26,13 @@ class EntityPathConfig implements PathConfigInterface
         $this->paths = $paths ?? [];
     }
 
-    public function addPath(string $namespace, string $path): void
+    public function addPath(string $namespace, string $path, bool $checkPath = true): void
     {
         if (empty($namespace)) {
+            return;
+        }
+
+        if ($checkPath && !Files::isDirectory($path)) {
             return;
         }
 
