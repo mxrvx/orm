@@ -62,7 +62,7 @@ class App
     private static function injectBindings(\modX $modx): void
     {
         /** @var Container $container */
-        $container = \MXRVX\Autoloader\App::getInstance($modx)->getContainer();
+        $container = \MXRVX\Autoloader\App::container();
 
         $registrators = [
             Registrators\RegisterConfigs::class,

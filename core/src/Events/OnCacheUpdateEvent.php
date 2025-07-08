@@ -15,7 +15,7 @@ class OnCacheUpdateEvent extends AbstractEvent
 
         //NOTE: Reload ORM for new cache schema
         /** @var \DI\Container $container */
-        $container = \MXRVX\Autoloader\App::getInstance($this->modx)->getContainer();
+        $container = \MXRVX\Autoloader\App::container();
         $container->get(ORMInterface::class);
     }
 }

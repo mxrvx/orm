@@ -33,7 +33,7 @@
         "cycle/schema-migrations-generator": "^v2.3",
         "loophp/collection": "^7.0",
         "monolog/monolog": "^3.9",
-        "mxrvx/autoloader": "^v0.1"
+        "mxrvx/autoloader": "^0.1.13"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -44,8 +44,7 @@
     "autoload": {
         "psr-4": {
             "MXRVX\\ORM\\": "core/src/"
-        },
-        "classmap": ["core/src/"]
+        }
     },
     "bin": [
         "bin/mxrvx-orm"

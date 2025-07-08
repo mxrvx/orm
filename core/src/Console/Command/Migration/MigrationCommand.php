@@ -55,8 +55,8 @@ abstract class MigrationCommand extends Command
 
         /** @var \modX $modx */
         $modx = $this->container->get(\modX::class);
-        $autoloader = \MXRVX\Autoloader\App::getInstance($modx);
-        if (!$package = $autoloader->manager()->getPackage($nameSpace)) {
+        $packageManager = \MXRVX\Autoloader\App::packageManager();
+        if (!$package = $packageManager->getPackage($nameSpace)) {
             throw new \RuntimeException(\sprintf('Package namespace `%s` not found', $nameSpace));
         }
 

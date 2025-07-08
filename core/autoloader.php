@@ -44,6 +44,6 @@ if (!isset($modx)) {
 
 App::injectDependencies($modx);
 /** @var \DI\Container $container */
-$container = \MXRVX\Autoloader\App::getInstance($modx)->getContainer();
+$container = $container ?? \MXRVX\Autoloader\App::container();
 \Cycle\ActiveRecord\Facade::setContainer($container);
 $container->set(App::class, \DI\autowire());
