@@ -75,6 +75,8 @@ class MigrationDownCommand extends MigrationCommand
             } while (true);
         }
 
+        \MXRVX\Autoloader\App::cacheManager()->clearCache();
+
         return self::SUCCESS;
     }
 }

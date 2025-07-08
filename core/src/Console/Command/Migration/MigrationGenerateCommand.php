@@ -49,9 +49,6 @@ class MigrationGenerateCommand extends MigrationCommand
 
 
         $schema = $compiler->compile($registry, $factory->get());
-
-        //var_export($schema);die;
-
         if (empty($schema)) {
             $output->writeln('<error>Registry are not configured yet</error>');
             return self::FAILURE;
