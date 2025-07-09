@@ -34,6 +34,12 @@ class Config extends SchemaConfig
                         xtype: 'numberfield',
                         typecast: Settings\TypeCaster::INTEGER,
                     ),
+                    Settings\Setting::define(
+                        key: 'sql_log_path',
+                        value: App::getLogDirectory(),
+                        xtype: 'textfield',
+                        typecast: Settings\TypeCaster::STRING,
+                    ),
                 ],
             );
         return Config::define($schema)->withConfig($config);

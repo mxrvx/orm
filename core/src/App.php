@@ -18,6 +18,11 @@ class App
         $this->config = Config::make($modx->config);
     }
 
+    public static function getLogDirectory(): string
+    {
+        return Packages::getLogDirectory(self::getNameSpaceSlug());
+    }
+
     public static function getCacheDirectory(): string
     {
         return Packages::getCacheDirectory(self::getNameSpaceSlug());

@@ -19,6 +19,7 @@ class DataBaseFactory
     ) {
         $logActive = $app->config->getSetting('sql_log_active')?->getBoolValue();
         $logLevel = $app->config->getSetting('sql_log_level')?->getIntegerValue() ?? 100;
+        $logPath = $app->config->getSetting('sql_log_path')?->getStringValue() ?? App::getCacheDirectory();
 
         $dbal = new DatabaseManager($databaseConfig->toCycleConfig());
         foreach ($dbal->getDrivers() as $driver) {
@@ -27,7 +28,7 @@ class DataBaseFactory
                 $driver->setModx($app->modx);
             }
             if ($logActive) {
-                $driver->setLogger((new LoggerFactory(\sprintf('%s.sql.log', $driver->getName()), $logLevel))->get());
+                $driver->setLogger((new LoggerFactory(\sprintf('%s/%s.sql.log', $logPath, $driver->getName()), $logLevel))->get());
             }
         }
 

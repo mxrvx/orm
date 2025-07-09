@@ -26,6 +26,11 @@ class Packages
         return \sprintf('%s/cache/%s', \rtrim(MODX_CORE_PATH, '/'), $namespace);
     }
 
+    public static function getLogDirectory(string $namespace): string
+    {
+        return \sprintf('%s/cache/logs/%s', \rtrim(MODX_CORE_PATH, '/'), $namespace);
+    }
+
     public static function getMigrationsTable(string $namespace): string
     {
         return \sprintf('%s_migrations', \str_replace('-', '_', $namespace));
